@@ -24,16 +24,19 @@ let studentLabs = [
 const expectedNum = 27;
 function gradeLabs(students){ 
     for(let value of students){
-    try{
+    try{ if (!value.hasOwnProperty("runLab")) {
+        throw new TypeError("Error thrown")
+    } 
         if(value.runLab(3) === expectedNum){
-                return 'You are right'
+                console.log('You are right')
             } 
-            return 'You did a mistake'
+            else console.log('You did a mistake')
+        
 
     } catch(err){
-        throw new TypeError("Error thrown")
+        console.log(err.message)
     }
 }
 }
 
-console.log(gradeLabs(studentLabs));
+gradeLabs(studentLabs);
